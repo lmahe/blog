@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Thu Jan 05 16:31:50 CET 2012:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0134-ae7f-5fd0-000004b01268 
+on database directory /Users/lmahe/test_maven/blog/target/testdb  with class loader sun.misc.Launcher$AppClassLoader@5ab8df17 
+Loaded from file:/Users/lmahe/.m2/repository/org/apache/derby/derby/10.8.1.2/derby-10.8.1.2.jar
+java.vendor=Apple Inc.
+java.runtime.version=1.6.0_29-b11-402-11M3527
+user.dir=/Users/lmahe/test_maven/blog
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
