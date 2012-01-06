@@ -5,13 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.ecm.blog.domain.Post;
 
+@Service
 public class PostServiceImpl implements PostService {
 
 	@Inject
@@ -47,6 +49,18 @@ public class PostServiceImpl implements PostService {
 
 		//session.close();
 	}
+	
+	@Override
+	@Transactional
+	public void clear()
+	{
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.createQuery("delete from Post")
+		.executeUpdate();
+		
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see edu.ecm.blog.service.PostService#find(int, int)
@@ -82,6 +96,26 @@ public class PostServiceImpl implements PostService {
 		//session.close();
 		return r.intValue();
 
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Post findBySlug(String slug) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query query = session.createQuery("from Post where slug =:slug").setString("slug", slug);
+	
+		@SuppressWarnings("unchecked")
+		List<Post> list = query.list();
+
+		if (list.size() == 0)
+		{		
+			return null;
+		}
+		else
+		{
+			return list.get(0);
+		}
 	}
 
 //	public void setSessionFactory(SessionFactory sessionFactory) {
