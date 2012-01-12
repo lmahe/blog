@@ -20,4 +20,6 @@ public interface PostService {
 
 	public Post findBySlug(String slug);
 
+	public Post findById(Long id);
+
 }

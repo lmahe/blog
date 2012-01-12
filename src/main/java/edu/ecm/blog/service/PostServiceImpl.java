@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,7 @@ public class PostServiceImpl implements PostService {
 	public void save(Post post) {
 		//Session session = sessionFactory.openSession();
 		Session session = sessionFactory.getCurrentSession();
-		session.save(post);
+		session.saveOrUpdate(post);
 		//session.close();
 
 	}
@@ -73,6 +74,7 @@ public class PostServiceImpl implements PostService {
 		Criteria criteria = session.createCriteria(Post.class);
 		criteria.setFirstResult(pageIndex * pageSize);
 		criteria.setMaxResults(pageSize);
+		criteria.addOrder(Order.desc("date"));
 		
 		
 		@SuppressWarnings("unchecked")
@@ -105,6 +107,26 @@ public class PostServiceImpl implements PostService {
 		
 		Query query = session.createQuery("from Post where slug =:slug").setString("slug", slug);
 	
+		@SuppressWarnings("unchecked")
+		List<Post> list = query.list();
+
+		if (list.size() == 0)
+		{		
+			return null;
+		}
+		else
+		{
+			return list.get(0);
+		}
+	}
+
+	@Override
+	@Transactional
+	public Post findById(Long id) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query query = session.createQuery("from Post where id =:id").setLong("id", id);
+		
 		@SuppressWarnings("unchecked")
 		List<Post> list = query.list();
 

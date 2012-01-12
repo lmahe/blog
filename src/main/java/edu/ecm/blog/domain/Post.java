@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 @Entity
@@ -35,6 +37,7 @@ public class Post {
 	
 	
    @Column
+   @NotEmpty
    private String title;
    
    @Column

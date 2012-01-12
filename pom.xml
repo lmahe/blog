@@ -150,5 +150,18 @@
    <version>2.6</version>
    <scope>compile</scope>
 </dependency>
+<dependency>
+   <groupId>org.seleniumhq.selenium</groupId>
+   <artifactId>selenium-java</artifactId>
+   <version>2.14.0</version>
+   <scope>test</scope>
+</dependency>
+<!-- hibernate validator -->
+<dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-validator</artifactId>
+   <version>4.2.0.Final</version>
+   <scope>compile</scope>
+</dependency>
   </dependencies>
 </project>
