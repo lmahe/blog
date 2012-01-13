@@ -8,7 +8,16 @@ public class TagCloud {
     private List<String> tags = new ArrayList<String>();
 
     
-    public void add(String... strings) {
+    
+    
+    
+    public List<String> getTags() {
+		return tags;
+	}
+
+
+
+	public void add(String... strings) {
     	if (strings==null)
     	{
     		return;

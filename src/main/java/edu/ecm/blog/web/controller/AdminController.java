@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.ecm.blog.domain.Post;
 import edu.ecm.blog.service.PostService;
+import edu.ecm.blog.service.TagCloudService;
 
 @Controller
 public class AdminController {
@@ -34,6 +34,7 @@ public class AdminController {
 	@RequestMapping("/admin/posts")
 	   public String index(Model model) {
 		   model.addAttribute("posts", postService.find(0, postService.count()));
+		   model.addAttribute("tags", tagCloud.buildTagCloud().getTags());
 	      return "admin/posts";
 	   }
 	   
@@ -86,4 +87,9 @@ public class AdminController {
 	   
 	   @Inject
 	   private PostService postService;
+	   
+	   @Inject
+	   private TagCloudService tagCloud;
+	   
+
 }

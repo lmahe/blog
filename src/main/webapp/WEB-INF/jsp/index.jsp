@@ -36,18 +36,21 @@
            
            <div id="right">
                <div class="tagcloud">
+               
                    <span class="title">Les tags</span>
                    <ul>
-                       <li>tag 1</li>
-                       <li>tag 2</li>
+                   <c:forEach var="tag" items="${tags}">
+                       <li>${tag}</li>
+                   </c:forEach>
                    </ul>
                </div>
                
                <div class="latest">
                    <span class="title">Les billets récents</span>
                    <ul>
-                       <li>Un post</li>
-                       <li>Un post</li>
+                   <c:forEach var="post" items="${posts}" end="1">
+                       <li>${post.title}</li>
+                   </c:forEach>
                    </ul>
                </div>
            </div>

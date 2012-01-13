@@ -57,8 +57,9 @@
                <div class="latest">
                    <span class="title">Les billets récents</span>
                    <ul>
-                       <li>Un post</li>
-                       <li>Un post</li>
+                   <c:forEach var="post" items="${posts}" end="1">
+                       <li><a href="./post/${post.id}">${post.title}</a></li>
+                   </c:forEach>
                    </ul>
                </div>
            </div>

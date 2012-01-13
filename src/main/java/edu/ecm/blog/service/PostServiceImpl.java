@@ -74,6 +74,7 @@ public class PostServiceImpl implements PostService {
 		Criteria criteria = session.createCriteria(Post.class);
 		criteria.setFirstResult(pageIndex * pageSize);
 		criteria.setMaxResults(pageSize);
+		// rendre les post par ordre d'ajout
 		criteria.addOrder(Order.desc("date"));
 		
 		

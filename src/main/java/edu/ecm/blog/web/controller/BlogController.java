@@ -12,12 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ecm.blog.domain.Post;
 import edu.ecm.blog.service.PostService;
+import edu.ecm.blog.service.TagCloudService;
 
 @Controller
 public class BlogController {
+
+
+	@Inject
+	private PostService postService;
+	   
+	@Inject
+	private TagCloudService tagCloud;
+	
+	
+	
+	
    @RequestMapping("/index")
    public String index(Model model) {
 	   model.addAttribute("posts", postService.find(0, 10));
+	   model.addAttribute("tags", tagCloud.buildTagCloud().getTags());
       return "index";
    }
    
@@ -28,8 +41,7 @@ public class BlogController {
        return "post";
    }
    
-   @Inject
-   private PostService postService;
+   
    
    @PostConstruct
    public void bootstrap() {
